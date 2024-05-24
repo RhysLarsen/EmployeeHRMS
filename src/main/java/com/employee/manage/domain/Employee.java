@@ -33,6 +33,7 @@ public class Employee {
     private String name;
     private String email;
     private double salary;
+    private String application;
 
     @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
     @JoinColumn(name = "emp_dept_id")
