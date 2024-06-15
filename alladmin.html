@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Staff List</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <style>
+        /* Custom styles */
+        .confirm-delete-btn {
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+    </style>
+	<div th:include="page1 :: head"></div>
+	</head>
+<body>
+
+	<div th:include="page1 :: navbar"></div>
+
+
+<h1 class="text-center">Admin Staff List</h1>
+
+<div class="container text-center">
+    <p th:text="${msg}"></p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Salary</th>
+            <th>Role</th>
+            <th>Department name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="admin : ${adminList}">
+            <td th:text="${admin.empId}"></td>
+            <td th:text="${admin.name}"></td>
+            <td th:text="${admin.email}"></td>
+            <td th:text="${admin.salary}"></td>
+            <td th:text="${admin.role}"></td>
+            <td th:text="${admin.department.name}"></td>
+            <td><a th:href="@{/edit-admin/{id}(id = ${admin.empId})}">
+                <button class="btn btn-primary">Edit</button>
+            </a></td>
+            <td><a th:href="@{/delete-admin/{id}(id = ${admin.empId})}">
+                <button class="btn btn-danger">Delete</button>
+            </a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div style="text-align: right;">
+        <!-- Add btn-primary class for navy blue color -->
+        <button type="button" class="btn btn-primary btn-lg btn-block">
+            <a style="text-decoration: none; color: white" href="/admin-form">Add Admin Employee</a>
+        </button>
+    </div>
+</div>
+
+</body>
+
+</html>
